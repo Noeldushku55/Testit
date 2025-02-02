@@ -1,0 +1,39 @@
+import pandas as pd
+
+# Load the dataset from a CSV file
+data = pd.read_csv('dataset.csv')
+
+# Display the first few rows of the dataset
+print("First few rows of the dataset:")
+print(data.head())
+
+# Display basic statistics of the dataset
+print("\nBasic statistics of the dataset:")
+print(data.describe())
+
+# Check for missing values
+print("\nMissing values in each column:")
+print(data.isnull().sum())
+
+# Drop rows with missing values
+data_cleaned = data.dropna()
+
+# Display the cleaned dataset's first few rows
+print("\nFirst few rows of the cleaned dataset:")
+print(data_cleaned.head())
+
+# Group by a specific column and calculate the mean of another column
+# Replace 'column1' and 'column2' with actual column names from your dataset
+grouped_data = data_cleaned.groupby('column1')['column2'].mean()
+
+print("\nMean of 'column2' grouped by 'column1':")
+print(grouped_data)
+
+# Save the cleaned dataset to a new CSV file
+data_cleaned.to_csv('cleaned_dataset.csv', index=False)
+
+print("\nCleaned dataset saved to 'cleaned_dataset.csv'.")
+
+# Additional analysis: finding correlation between columns
+print("\nCorrelation matrix:")
+print(data_cleaned.corr())
